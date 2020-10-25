@@ -1,5 +1,14 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { all, call, debounce, delay, put, takeEvery } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  debounce,
+  delay,
+  put,
+  select,
+  takeEvery,
+  takeLatest,
+} from 'redux-saga/effects';
 import {
   createRequestAction,
   createRequestSaga,
@@ -16,7 +25,7 @@ export const createTodoThunk = createRequestThunk(createTodo);
 export const createTodoLog = createAction('todos/CREATE_TODO_LOG');
 
 const initialState = {
-  todos: null,
+  todos: [],
   todo: null,
   todoLog: [],
 };
@@ -57,11 +66,19 @@ export function* todoSaga() {
         return response.data;
       })
     ),
-    takeEvery(
+    takeLatest(
       getTodo.REQUEST,
       createRequestSaga(getTodo, function* (action) {
+        delay(100);
         const { payload: todoId } = action;
-        yield call(api.getTodo, todoId);
+        const todo = yield select((state) => state.todo.todo);
+        yield put(createTodoLog(`Todo Detail (todoId: ${todoId})`));
+
+        let resultTodo;
+        if (todo && todo.id === todoId) resultTodo = todo;
+        ({ data: resultTodo } = yield call(api.getTodo, todoId));
+
+        return resultTodo;
       })
     ),
     takeEvery(

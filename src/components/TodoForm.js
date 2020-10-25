@@ -31,6 +31,7 @@ function TodoForm() {
         onChange={(e) => setTitle(e.target.value)}
         large={false}
         placeholder="title"
+        required
       />
       <InputGroup
         name="content"

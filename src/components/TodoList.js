@@ -10,7 +10,7 @@ function TodoList() {
   const todos = useSelector((state) => state.todo.todos);
   const loading = useSelector((state) => state.pending[getTodos.type]);
   useEffect(() => {
-    !todos && dispatch(getTodos.request());
+    (!todos || !todos.length) && dispatch(getTodos.request());
   }, [dispatch, todos]);
 
   return (
