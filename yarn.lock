@@ -1008,7 +1008,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@blueprintjs/core@^3.35.0":
+"@blueprintjs/core@^3.34.0", "@blueprintjs/core@^3.35.0":
   version "3.35.0"
   resolved "https://registry.yarnpkg.com/@blueprintjs/core/-/core-3.35.0.tgz#ed48ad7e6692f7dc32e28200a7984e029102ce3f"
   integrity sha512-2coEMDX1JJuHvDCt6wZSB6zntDlKvUmi4rqjLeGR+ZOo4TtFB92GSjycMtupka1PURM1A66oQZvnMiBIjuMW6Q==
@@ -1031,6 +1031,17 @@
   integrity sha512-clfdwRQlzqs2sDxjwQr4p10Z3bGNTnqpsLgN+4TN1ECf7plEEukhvQh6YK/Lfd5xDhEBEEZ/YQCawZbyAYjfXg==
   dependencies:
     classnames "^2.2"
+    tslib "~1.13.0"
+
+"@blueprintjs/table@^3.8.17":
+  version "3.8.17"
+  resolved "https://registry.yarnpkg.com/@blueprintjs/table/-/table-3.8.17.tgz#593b965edb0385b1f31a8214844ea23b8e16984a"
+  integrity sha512-OzZ1T4k3miI9qDH5sub4E9jRB1wPaZ9ZAkzN6Uw8bgiPZUZun213FOQmvVWz3oxnYO1WpnMmBrWa6hmsNUgC0g==
+  dependencies:
+    "@blueprintjs/core" "^3.34.0"
+    classnames "^2.2"
+    prop-types "^15.7.2"
+    react-lifecycles-compat "^3.0.4"
     tslib "~1.13.0"
 
 "@cnakazawa/watch@^1.0.3":

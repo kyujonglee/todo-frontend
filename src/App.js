@@ -1,11 +1,12 @@
 import './App.css';
 import TodoList from './components/TodoList';
-import { createStore, applyMiddleware } from 'redux';
+import TodoForm from './components/TodoForm';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer, rootSaga } from './modules';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk';
+import Log from './components/Log';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,7 +20,9 @@ sagaMiddleware.run(rootSaga);
 function App() {
   return (
     <Provider store={store}>
+      <TodoForm />
       <TodoList />
+      <Log />
     </Provider>
   );
 }

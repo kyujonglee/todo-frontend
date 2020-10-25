@@ -5,6 +5,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.35.0",
     "@blueprintjs/icons": "^3.22.0",
+    "@blueprintjs/table": "^3.8.17",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

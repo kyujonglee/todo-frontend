@@ -10,4 +10,4 @@ export const client = axios.create({
 export const getTodos = () => client.get('/');
 export const getTodo = (todoId) => client.get(`/${todoId}`);
 export const removeTodo = (todoId) => client.delete(`/${todoId}`);
-export const createTodo = (todoData) => client.post('/', { todoData });
+export const createTodo = (todoData) => client.post('/', todoData);
