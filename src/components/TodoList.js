@@ -11,6 +11,7 @@ function TodoList() {
   const loading = useSelector((state) => state.pending[getTodos.type]);
   useEffect(() => {
     (!todos || !todos.length) && dispatch(getTodos.request());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
