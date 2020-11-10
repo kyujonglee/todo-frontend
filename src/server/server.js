@@ -5,12 +5,11 @@ import { END } from 'redux-saga';
 import routes from '../components/Router';
 import { createStore } from '../lib/helpers';
 import renderer from './renderer';
-import path from 'path';
 import morgan from 'morgan';
 
 const app = express();
 
-app.use(express.static(path.resolve('build')));
+app.use(express.static('build'));
 app.use(morgan('combined'));
 
 app.get('*', async (req, res) => {
@@ -32,7 +31,9 @@ app.get('*', async (req, res) => {
           promise.then(resolve).catch(resolve);
         });
       }
-    });
+      return null;
+    })
+    .filter((promise) => promise);
 
   Promise.all(promises).then(() => {
     const content = renderer({ req, store });
@@ -40,7 +41,7 @@ app.get('*', async (req, res) => {
   });
 });
 
-const PORT = 3000;
+const PORT = 3001;
 
 app.listen(PORT, () => {
   console.log(`✅ app listening port : ${PORT}`);
