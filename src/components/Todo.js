@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { AppToaster } from './Toaster';
+import AppToaster from './Toaster';
 import { Colors, Icon } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { removeTodoThunk } from '../modules/todos';

@@ -2,7 +2,7 @@ import { Button, Colors, InputGroup, Intent } from '@blueprintjs/core';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTodo, createTodoThunk } from '../modules/todos';
-import { AppToaster } from './Toaster';
+import AppToaster from './Toaster';
 
 function TodoForm() {
   const [title, setTitle] = useState('');

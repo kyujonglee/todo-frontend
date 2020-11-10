@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getTodo, removeTodoThunk } from '../modules/todos';
 import Loader from './Loader';
-import { AppToaster } from './Toaster';
+import AppToaster from './Toaster';
 
 function Detail() {
   const dispatch = useDispatch();
@@ -69,5 +69,13 @@ function Detail() {
     </>
   );
 }
+
+async function loadData({ store, req }) {
+  const id = req.params;
+  console.log(id);
+  store.dispatch(getTodo.request(parseInt(id, 10)));
+}
+
+Detail.loadData = loadData;
 
 export default Detail;

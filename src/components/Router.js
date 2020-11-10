@@ -1,18 +1,16 @@
-import { Switch, Route } from 'react-router-dom';
-import Detail from './Detail';
-import List from './List';
+import List from '../components/List';
+import Detail from '../components/Detail';
 
-function Router() {
-  return (
-    <Switch>
-      <Route exact path="/">
-        <List />
-      </Route>
-      <Route path="/:id">
-        <Detail />
-      </Route>
-    </Switch>
-  );
-}
+const routes = [
+  {
+    path: '/',
+    component: List,
+    exact: true,
+  },
+  {
+    path: '/:id',
+    component: Detail,
+  },
+];
 
-export default Router;
+export default routes;

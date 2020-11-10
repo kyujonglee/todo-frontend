@@ -1,6 +1,11 @@
 import { Position, Toaster } from '@blueprintjs/core';
 
-export const AppToaster = Toaster.create({
-  className: 'recipe-toaster',
-  position: Position.TOP,
-});
+const AppToaster =
+  typeof window !== 'undefined'
+    ? Toaster.create({
+        className: 'recipe-toaster',
+        position: Position.TOP,
+      })
+    : null;
+
+export default AppToaster;
