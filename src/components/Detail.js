@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Colors, Icon, Intent } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { useCallback, useEffect } from 'react';
@@ -15,9 +16,11 @@ function Detail() {
   const todo = useSelector((state) => state.todo.todo);
   const history = useHistory();
 
+  console.log('todo', todo, !todo);
   useEffect(() => {
-    dispatch(getTodo.request(parseInt(id, 10)));
-  }, [dispatch, id]);
+    !todo && dispatch(getTodo.request(parseInt(id, 10)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleRemove = useCallback(async () => {
     try {
@@ -70,9 +73,10 @@ function Detail() {
   );
 }
 
-async function loadData({ store, req }) {
-  const id = req.params;
-  console.log(id);
+async function loadData({ store, match }) {
+  const {
+    params: { id },
+  } = match;
   store.dispatch(getTodo.request(parseInt(id, 10)));
 }
 

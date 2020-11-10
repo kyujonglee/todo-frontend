@@ -1,3 +1,4 @@
+import React from 'react';
 import { Spinner } from '@blueprintjs/core';
 
 function Loader() {

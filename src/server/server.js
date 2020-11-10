@@ -6,24 +6,22 @@ import routes from '../components/Router';
 import { createStore } from '../lib/helpers';
 import renderer from './renderer';
 import morgan from 'morgan';
+import favicon from 'serve-favicon';
 
 const app = express();
 
-app.use(express.static('build'));
-app.use(morgan('combined'));
+app.use(morgan('common'));
+app.use('/static', express.static('build/static'));
+app.use(favicon('build/favicon.ico'));
 
 app.get('*', async (req, res) => {
-  console.log('path', req.path);
   const { store, sagaTask } = createStore();
 
-  store.dispatch(END);
-  await sagaTask.toPromise();
-
   const promises = matchRoutes(routes, req.path)
-    .map(async ({ route }) => {
+    .map(async ({ route, match }) => {
       const { component } = route;
       const loader = component?.loadData;
-      loader && (await loader({ store, req }));
+      loader && (await loader({ store, match }));
     })
     .map((promise) => {
       if (promise) {
@@ -35,10 +33,13 @@ app.get('*', async (req, res) => {
     })
     .filter((promise) => promise);
 
-  Promise.all(promises).then(() => {
-    const content = renderer({ req, store });
-    res.send(content);
-  });
+  await Promise.all(promises);
+
+  store.dispatch(END);
+  await sagaTask.toPromise();
+
+  const content = await renderer({ req, store });
+  res.send(content);
 });
 
 const PORT = 3001;

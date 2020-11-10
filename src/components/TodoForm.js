@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Colors, InputGroup, Intent } from '@blueprintjs/core';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
