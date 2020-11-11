@@ -7,12 +7,13 @@ import { createStore } from '../lib/helpers';
 import renderer from './renderer';
 import morgan from 'morgan';
 import favicon from 'serve-favicon';
+import path from 'path';
 
 const app = express();
 
 app.use(morgan('common'));
-app.use('/static', express.static('build/static'));
-app.use(favicon('build/favicon.ico'));
+app.use('/static', express.static(path.resolve('build', 'static')));
+app.use(favicon(path.resolve('build', 'favicon.ico')));
 
 app.get('*', async (req, res) => {
   const { store, sagaTask } = createStore();
