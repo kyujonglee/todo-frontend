@@ -16,7 +16,6 @@ function Detail() {
   const todo = useSelector((state) => state.todo.todo);
   const history = useHistory();
 
-  console.log('todo', todo, !todo);
   useEffect(() => {
     !todo && dispatch(getTodo.request(parseInt(id, 10)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
