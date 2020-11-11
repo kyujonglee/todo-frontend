@@ -10,7 +10,7 @@ import path from 'path';
 
 const renderer = async ({ req, store }) => {
   let html = await fs.promises.readFile(
-    path.resolve('build', 'index.html'),
+    path.resolve(__dirname, '..', '..', 'build', 'index.html'),
     'utf8'
   );
   const content = renderToString(
